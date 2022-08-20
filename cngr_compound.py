@@ -7,7 +7,7 @@ def granularity_range_check(granularity):
         raise argparse.ArgumentTypeError('Granularity must be between 1 and 365.')
     return granularity
 
-parser = argparse.ArgumentParser('Granular CAGR compounding calculator')
+parser = argparse.ArgumentParser('Granular CnGR compounding calculator')
 parser.add_argument(
     '--principal',
     type=float,
@@ -58,6 +58,6 @@ for i in range(granularity):
     principal *= granular_interest_multiplier
 
     # Suppress noisy output for granularity >= 20... only print out 20 time periods maximum, and always print out the last period
-    if granularity < 20 or granularity % granularity_mod_target == 0 or i == granularity - 1:
-    print('Period {}: {}'.format(i, principal))
+    if granularity < 20 or i % granularity_mod_target == 0 or i == (granularity - 1):
+        print('Period {}: {}'.format(i, principal))
 
